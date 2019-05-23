@@ -15,8 +15,8 @@ package main
 
 import (
 	// 第一步：引入库
-	"github.com/hunterhug/marmot/miner"
-	"github.com/hunterhug/parrot/util"
+	"github.com/zhangweilun/marmot/miner"
+	"github.com/zhangweilun/marmot/parrot/util"
 )
 
 func init() {

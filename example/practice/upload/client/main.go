@@ -4,7 +4,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/hunterhug/marmot/miner"
+	"github.com/zhangweilun/marmot/miner"
 )
 
 func postFile(filename string, targetUrl string) {

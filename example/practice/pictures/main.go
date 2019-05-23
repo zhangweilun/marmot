@@ -15,8 +15,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/hunterhug/parrot/util"
-	"github.com/hunterhug/marmot/tool"
+	"github.com/zhangweilun/marmot/parrot/util"
+	"github.com/zhangweilun/marmot/tool"
 )
 
 // Num of miner, We can run it at the same time to crawl data fast

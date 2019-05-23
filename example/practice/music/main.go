@@ -27,8 +27,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/hunterhug/marmot/miner"
-	"github.com/hunterhug/parrot/util"
+	"github.com/zhangweilun/marmot/miner"
+	"github.com/zhangweilun/marmot/parrot/util"
 )
 
 // Open http://music.163.com/#/playlist?id=145258012

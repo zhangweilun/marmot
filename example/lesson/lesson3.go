@@ -19,8 +19,8 @@ package main
 
 import (
 	// 1:import package
-	"github.com/hunterhug/marmot/miner"
-	"github.com/hunterhug/parrot/util"
+	"github.com/zhangweilun/marmot/miner"
+	"github.com/zhangweilun/marmot/parrot/util"
 )
 
 func init() {

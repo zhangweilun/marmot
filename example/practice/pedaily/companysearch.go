@@ -21,9 +21,9 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/hunterhug/marmot/expert"
-	"github.com/hunterhug/marmot/miner"
-	"github.com/hunterhug/parrot/util"
+	"github.com/zhangweilun/marmot/expert"
+	"github.com/zhangweilun/marmot/miner"
+	"github.com/zhangweilun/marmot/parrot/util"
 )
 
 var client *miner.Worker
