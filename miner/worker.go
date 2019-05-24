@@ -25,6 +25,29 @@ import (
 	"mime/multipart"
 )
 
+// 阿布云代理头
+type ProxyAuth struct {
+	License string
+	SecretKey string
+}
+
+func (p ProxyAuth) ProxyClient(proxyServer string) http.Client {
+	proxyURL, _ := url.Parse("http://" + p.License + ":" + p.SecretKey + "@" + proxyServer)
+	return http.Client{Transport: &http.Transport{Proxy:http.ProxyURL(proxyURL)}}
+}
+
+// 新建一个阿布云代理的worker
+func NewAbuyunWorker(proxyServer string,auth ProxyAuth){
+	worker := new(Worker)
+	worker.Header = http.Header{}
+	worker.Data = url.Values{}
+	worker.BData = []byte{}
+	proxyURL, _ := url.Parse("http://" + auth.License + ":" + auth.SecretKey + "@" + proxyServer)
+	client := &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyURL)}}
+	worker.Client = client
+	worker.Ipstring = proxyURL.String()
+}
+
 // New a worker, if ipstring is a proxy address, New a proxy client.
 // Proxy address such as:
 // 		http://[user]:[password@]ip:port, [] stand it can choose or not. case: socks5://127.0.0.1:1080
