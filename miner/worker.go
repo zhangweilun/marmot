@@ -38,7 +38,20 @@ func NewAbuyunWorker(proxyServer string,auth ProxyAuth) (*Worker, error) {
 	worker.Data = url.Values{}
 	worker.BData = []byte{}
 	proxyURL, _ := url.Parse("http://" + auth.License + ":" + auth.SecretKey + "@" + proxyServer)
-	client := &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyURL)}}
+	// This a alone client, diff from global client.
+	client := &http.Client{
+		// Allow redirect
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			Logger.Debugf("[GoWorker] Redirect:%v", req.URL)
+			return nil
+		},
+		// Allow proxy: http, https, socks5
+		Transport: &http.Transport{Proxy: http.ProxyURL(proxyURL)},
+		// Allow keep cookie
+		Jar: NewJar(),
+		// Allow Timeout
+		Timeout: util.Second(DefaultTimeOut),
+	}
 	worker.Client = client
 	worker.Ipstring = proxyURL.String()
 	return worker, nil
