@@ -31,13 +31,8 @@ type ProxyAuth struct {
 	SecretKey string
 }
 
-func (p ProxyAuth) ProxyClient(proxyServer string) http.Client {
-	proxyURL, _ := url.Parse("http://" + p.License + ":" + p.SecretKey + "@" + proxyServer)
-	return http.Client{Transport: &http.Transport{Proxy:http.ProxyURL(proxyURL)}}
-}
-
 // 新建一个阿布云代理的worker
-func NewAbuyunWorker(proxyServer string,auth ProxyAuth){
+func NewAbuyunWorker(proxyServer string,auth ProxyAuth) (*Worker, error) {
 	worker := new(Worker)
 	worker.Header = http.Header{}
 	worker.Data = url.Values{}
@@ -46,6 +41,7 @@ func NewAbuyunWorker(proxyServer string,auth ProxyAuth){
 	client := &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyURL)}}
 	worker.Client = client
 	worker.Ipstring = proxyURL.String()
+	return worker, nil
 }
 
 // New a worker, if ipstring is a proxy address, New a proxy client.
